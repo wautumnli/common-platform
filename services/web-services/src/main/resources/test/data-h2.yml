@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:h2:file:./data/testdb;MODE=MySQL  # 内存数据库
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true   # 启用 H2 控制台，方便查看数据库
+      path: /h2-console
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true  # 映射数据库字段名为驼峰命名法
