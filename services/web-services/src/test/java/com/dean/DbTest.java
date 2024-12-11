@@ -6,6 +6,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 
 @SpringBootTest
 public class DbTest {
@@ -15,12 +19,8 @@ public class DbTest {
 
   @Test
   void testInsert() {
-    UserPo userPo = new UserPo();
-    userPo.setAccount("test");
-    userPo.setPassword("test");
-    userPo.setNickName("test");
-    userPo.setCreateUser("test");
-    userPo.setUpdateUser("test");
-    userMapper.insert(userPo);
+    ZoneId zoneId = ZoneOffset.UTC;
+    LocalDateTime time = LocalDate.now(zoneId).atStartOfDay();
+    System.out.println(time);
   }
 }
