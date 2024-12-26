@@ -3,7 +3,7 @@ package com.dean.model.domain;
 import lombok.Data;
 
 @Data
-public class User {
+public class Account {
 
   private Long accountId;
   private String account;

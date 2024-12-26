@@ -22,6 +22,9 @@
 </template>
 
 <script>
+import {login} from '@/api/account'
+import {SUCCESS_CODE} from "@/constants";
+
 export default {
   name: 'SignIn',
   data() {
@@ -32,10 +35,10 @@ export default {
       },
       rules: {
         username: [
-          { required: true, message: '请输入用户名', trigger: 'blur' }
+          {required: true, message: '请输入用户名', trigger: 'blur'}
         ],
         password: [
-          { required: true, message: '请输入密码', trigger: 'blur' }
+          {required: true, message: '请输入密码', trigger: 'blur'}
         ]
       },
       loading: false
@@ -43,16 +46,20 @@ export default {
   },
   methods: {
     login() {
-      this.$refs.loginForm.validate(valid => {
+      this.$refs.loginForm.validate(async valid => {
         if (valid) {
           this.loading = true
-          // 在这里执行登录逻辑
-          // ...
-          // 模拟登录延迟
-          setTimeout(() => {
-            this.loading = false
-            this.$message.success('登录成功')
-          }, 2000)
+          try {
+            const {code} = await login(this.loginForm);
+            if (code === SUCCESS_CODE) {
+              this.$message.success("登录成功");
+              this.$router.push('/')
+            }
+          } catch (error) {
+            this.$message.error(error.response.data.msg);
+          } finally {
+            this.loading = false;
+          }
         } else {
           return false
         }

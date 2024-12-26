@@ -1,7 +1,6 @@
 package com.dean;
 
-import com.dean.mapper.UserMapper;
-import com.dean.model.po.UserPo;
+import com.dean.mapper.AccountMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -15,7 +14,7 @@ import java.time.ZoneOffset;
 public class DbTest {
 
   @Resource
-  private UserMapper userMapper;
+  private AccountMapper userMapper;
 
   @Test
   void testInsert() {

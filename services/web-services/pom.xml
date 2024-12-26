@@ -36,6 +36,11 @@
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter-test</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.dean</groupId>
+            <artifactId>utils-service</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

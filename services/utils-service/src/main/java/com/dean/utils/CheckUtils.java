@@ -14,15 +14,7 @@ import java.util.function.Function;
 
 public class CheckUtils {
 
-  /**
-   * 校验参数函数
-   *
-   * @param t
-   *     待校验对象
-   * @param checkFields
-   *     校验字段
-   */
-  public static <T> void check(T t, String checkFields) {
+  public static <T> void check(T t, String checkFields, String msg) {
     // 空校验返回
     if (StringUtils.isBlank(checkFields)) {
       return;
@@ -37,7 +29,19 @@ public class CheckUtils {
       }
     }
     // 返回异常结果
-    returnResult(checkResult);
+    returnResult(checkResult, msg);
+  }
+
+  /**
+   * 校验参数函数
+   *
+   * @param t
+   *     待校验对象
+   * @param checkFields
+   *     校验字段
+   */
+  public static <T> void check(T t, String checkFields) {
+    check(t, checkFields, null);
   }
 
   /**
@@ -46,7 +50,11 @@ public class CheckUtils {
    * @param checkResult
    *     字段检查结果集合
    */
-  private static void returnResult(List<String> checkResult) {
+  private static void returnResult(List<String> checkResult, String errorMsg) {
+    if (!StringUtils.isBlank(errorMsg) && CollectionUtils.isNotEmpty(checkResult)) {
+      throw new RuntimeException(errorMsg);
+    }
+
     if (CollectionUtils.isNotEmpty(checkResult)) {
       String msg = MessageFormat.format("字段: {0}为空，请检查",
           StringUtils.join(",", checkResult));

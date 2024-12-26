@@ -9,7 +9,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @TableName("account_tb")
-public class UserPo extends BasePo {
+public class AccountPo extends BasePo {
 
   @TableId(type = IdType.AUTO)
   private Long accountId;
